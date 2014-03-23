@@ -28,7 +28,7 @@ So as you see this project is allready in production while on the sametime i hav
 
 So this is the first time i put my Sources on GitHub. You are free to use and Copy my code or to send me ideas or bugs you find. I try to use following Coding Standards.
 
-+ PSG-0
++ PSR-0
 + PHP Doc
 + Js Doc
 + HTML 5
