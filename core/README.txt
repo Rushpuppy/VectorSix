@@ -1,1 +1,0 @@
-Hier liegt die Admin Panel App (respektive wird hier abgelegt wenn dieses Entwickelt ist ^^)
