@@ -1,7 +1,7 @@
 
 <?php
 
-class BaseController {
+public class BaseController {
   // Requestdata $_GET, $_POST, $_SESSION etc.
   public function request() {
   }
