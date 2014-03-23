@@ -16,32 +16,29 @@
           id: '1', 
           type: 'v6.ui.bootstrap.Navbar',
           parent: null,
-          children: [{id:'2'}],          
-          title: {
-            text: 'SEVERIN', 
-            href: '#'
-          },
+          children: [{id:'2'},{id:'7'},{id:'8'}],          
+          text: 'SEVERIN', 
+          href: '#',
           position: 'static',
           inverted: true
         },
         {
-            id: '2', 
-            type: 'v6.ui.bootstrap.NavbarContainer',
-            parent: '1',
-            children: [{id:'3'}],  
-            align: 'left',
-            containerType: 'nav'        
-        },
+          id: '2', 
+          type: 'v6.ui.bootstrap.NavbarNav',
+          parent: 1,
+          children: [{id:'3'}],     
+          align: 'left',
+        },        
         {
           id: '3', 
-          type: 'v6.ui.bootstrap.NavbarNav',
+          type: 'v6.ui.bootstrap.NavbarNavElement',
           parent: 2,
           children: [{id:'6'}],
           active: false,
-          text: 'Link',          
+          text: 'Link',    
           href: '#',
-          isDropdown: true
-        },
+          isDropdown: true,
+        },        
         {
           id: '4', 
           type: 'v6.ui.bootstrap.Dropdown',
@@ -58,7 +55,7 @@
           parent: 4,
           text: 'Dropdown Element',
           href: '#',
-          elementType: 'li', // li, divider, header
+          elementType: 'li',
           isDisabled: false,
           children: []
         },
@@ -68,10 +65,35 @@
           parent: 3,
           text: 'Test Element',
           href: '#',
-          elementType: 'li', // li, divider, header
+          elementType: 'li',
           isDisabled: true,
           children: []
-        }                                
+        },
+        {
+          id: '7', 
+          type: 'v6.ui.bootstrap.NavbarButton',
+          parent: 1,
+          children: [],
+          text: 'Title', 
+          href: '#',
+          style: 'success',
+          align: 'right'
+        },
+        {
+          id: '8', 
+          type: 'v6.ui.bootstrap.NavbarText',
+          parent: 1,
+          children: [],
+          text: 'This is a normal Text', 
+          align: 'left' // left, right
+        },
+        {
+          id: '9', 
+          type: 'v6.ui.bootstrap.NavbarForm',
+          parent: null,
+          children: [],    
+          align: 'left', // left, right
+        }                                                        
         ];
         
         // Render Page

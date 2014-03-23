@@ -1,7 +1,7 @@
 
 /*
 * v6.ui.bootstrap.Navbar Class
-* This Class generates a NavBar Bootstrap Element
+* This Class generates a Navbar Bootstrap Element
 * http://getbootstrap.com/components/#navbar
 * @author Rushpuppy - Severin Holm   
 */   
@@ -12,14 +12,12 @@ v6.ui.bootstrap.Navbar = function Navbar() {
   var $this = this;
     
   this.prop = {
-    id: '', 
+    id: 'Navbar', 
     type: 'v6.ui.bootstrap.Navbar',
     parent: null,
     children: [],
-    title: {
-      text: 'Title', 
-      href: '#'
-    },
+    text: 'Title', 
+    href: '#',
     position: 'none', // top, bottom, static, none
     inverted: true,
   };
@@ -55,10 +53,10 @@ v6.ui.bootstrap.Navbar = function Navbar() {
   this.render = function() {
     // Generate the HTML Template
     var strTpl = '';
-    strTpl += '<nav data-id="{id}" class="v6-bootstrap navbar navbar-{navbar_style} {navbar_position}">';
+    strTpl += '<nav data-id="{id}" class="v6-bootstrap navbar navbar-{style} {navbar_position}">';
     strTpl += '   <div class="container-fluid">';
     strTpl += '      <div class="navbar-header">';
-    strTpl += '         <a class="navbar-brand" href="{title_href}">{title_text}</a>';
+    strTpl += '         <a class="navbar-brand" href="{href}">{text}</a>';
     strTpl += '      </div>';
     strTpl += '      <div data-container="{id}" class="collapse navbar-collapse">';
     strTpl += '      </div>';
@@ -67,16 +65,15 @@ v6.ui.bootstrap.Navbar = function Navbar() {
 
     // Set Values into Template
     strTpl = strTpl.replace(/{id}/g, $this.prop.id);
-    strTpl = strTpl.replace(/{id}/g, $this.prop.id);
-    strTpl = strTpl.replace(/{title_href}/g, $this.prop.title.href);
-    strTpl = strTpl.replace(/{title_text}/g, $this.prop.title.text);
+    strTpl = strTpl.replace(/{href}/g, $this.prop.href);
+    strTpl = strTpl.replace(/{text}/g, $this.prop.text);
     
     // Set Style Value into Template    
     var strStyle = "default";
     if($this.prop.inverted) {
       var strStyle = "inverse";  
     }
-    strTpl = strTpl.replace(/{navbar_style}/g, strStyle);
+    strTpl = strTpl.replace(/{style}/g, strStyle);
     
     // Set Position Value into Template
     var strPosition = '';

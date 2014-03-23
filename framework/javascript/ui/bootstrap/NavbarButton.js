@@ -1,22 +1,25 @@
 
 /*
-* v6.ui.bootstrap.NavbarNav Class
-* This Class generates a NavbarNav Bootstrap Element
+* v6.ui.bootstrap.NavbarButton Class
+* This Class generates a NavbarButton Bootstrap Element
 * http://getbootstrap.com/components/#navbar
 * @author Rushpuppy - Severin Holm   
 */   
-v6.ui.bootstrap.NavbarNav = function NavbarNav() {
+v6.ui.bootstrap.NavbarButton = function NavbarButton() {
   //****************************************************************************
   // Properties
   //****************************************************************************
   var $this = this;
     
   this.prop = {
-    id: 'NavbarNav', 
-    type: 'v6.ui.bootstrap.NavbarNav',
+    id: 'NavbarButton', 
+    type: 'v6.ui.bootstrap.NavbarButton',
     parent: null,
-    children: [],    
-    align: 'left', // left, right
+    children: [],
+    text: 'Title', 
+    href: '#',
+    style: 'success', // success, info, warning, danger, normal
+    align: 'left' // left, right
   };
   
   
@@ -37,12 +40,12 @@ v6.ui.bootstrap.NavbarNav = function NavbarNav() {
     $this.uiBuilder = new v6.ui.UiBuilder();
     $this.uiBuilder.form = ''; 
     $this.uiBuilder.prop = '';  
-    $this.uiBuilder.allow = ''; // NavbarNavElement
+    $this.uiBuilder.allow = ''; // Nothing
   }
   
   //****************************************************************************
   // Methods
-  //****************************************************************************  
+  //****************************************************************************    
   /*
   * Renders and returns the HTML code this element 
   * @return {string} The rendered HTML Code of the element
@@ -50,12 +53,12 @@ v6.ui.bootstrap.NavbarNav = function NavbarNav() {
   this.render = function() {
     // Generate the HTML Template
     var strTpl = '';
-    strTpl += '<ul data-id="{id}" data-container="{id}" class="v6-bootstrap nav navbar-nav navbar-{align}">';
-    strTpl += '</ul>';
-    
+    strTpl += '<button data-id="{id}" type="button" class="v6-bootstrap btn btn-{style} navbar-btn navbar-{align}">{text}</button>';
+
     // Set Values into Template
     strTpl = strTpl.replace(/{id}/g, $this.prop.id);
-    strTpl = strTpl.replace(/{type}/g, $this.prop.containerType);
+    strTpl = strTpl.replace(/{style}/g, $this.prop.style);
+    strTpl = strTpl.replace(/{text}/g, $this.prop.text);
     strTpl = strTpl.replace(/{align}/g, $this.prop.align);
     
     // Return Template
@@ -69,14 +72,14 @@ v6.ui.bootstrap.NavbarNav = function NavbarNav() {
   this.load = function(objProp) {
     $this.prop = objProp;
   }
-
+  
   /*
   * Returns the prop Object
   * @return {object} the $this.prop
   */ 
   this.save = function() {
     return $this.prop;
-  }
+  }  
 
   //****************************************************************************
   $this.init();

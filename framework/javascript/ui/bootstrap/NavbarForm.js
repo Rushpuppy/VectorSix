@@ -1,19 +1,19 @@
 
 /*
-* v6.ui.bootstrap.NavbarNav Class
-* This Class generates a NavbarNav Bootstrap Element
+* v6.ui.bootstrap.NavbarForm Class
+* This Class generates a NavbarForm Bootstrap Element
 * http://getbootstrap.com/components/#navbar
 * @author Rushpuppy - Severin Holm   
 */   
-v6.ui.bootstrap.NavbarNav = function NavbarNav() {
+v6.ui.bootstrap.NavbarForm = function NavbarForm() {
   //****************************************************************************
   // Properties
   //****************************************************************************
   var $this = this;
     
   this.prop = {
-    id: 'NavbarNav', 
-    type: 'v6.ui.bootstrap.NavbarNav',
+    id: 'NavbarForm', 
+    type: 'v6.ui.bootstrap.NavbarForm',
     parent: null,
     children: [],    
     align: 'left', // left, right
@@ -37,7 +37,7 @@ v6.ui.bootstrap.NavbarNav = function NavbarNav() {
     $this.uiBuilder = new v6.ui.UiBuilder();
     $this.uiBuilder.form = ''; 
     $this.uiBuilder.prop = '';  
-    $this.uiBuilder.allow = ''; // NavbarNavElement
+    $this.uiBuilder.allow = ''; // FormGroup
   }
   
   //****************************************************************************
@@ -50,12 +50,11 @@ v6.ui.bootstrap.NavbarNav = function NavbarNav() {
   this.render = function() {
     // Generate the HTML Template
     var strTpl = '';
-    strTpl += '<ul data-id="{id}" data-container="{id}" class="v6-bootstrap nav navbar-nav navbar-{align}">';
-    strTpl += '</ul>';
+    strTpl += '<form data-id="{id}" data-container="{id}" class="v6-bootstrap navbar-form navbar-{align}">';
+    strTpl += '</form>';
     
     // Set Values into Template
     strTpl = strTpl.replace(/{id}/g, $this.prop.id);
-    strTpl = strTpl.replace(/{type}/g, $this.prop.containerType);
     strTpl = strTpl.replace(/{align}/g, $this.prop.align);
     
     // Return Template

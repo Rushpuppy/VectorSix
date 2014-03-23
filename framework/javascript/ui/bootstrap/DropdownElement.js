@@ -40,7 +40,7 @@ v6.ui.bootstrap.DropdownElement = function DropdownElement() {
     $this.uiBuilder = new v6.ui.UiBuilder();
     $this.uiBuilder.form = ''; 
     $this.uiBuilder.prop = '';  
-    $this.uiBuilder.allow = ''; // DropdownElement 
+    $this.uiBuilder.allow = ''; // Nothing
   }
   
   //****************************************************************************
@@ -56,13 +56,13 @@ v6.ui.bootstrap.DropdownElement = function DropdownElement() {
     
     switch($this.prop.elementType) {
       case 'li':
-        strTpl += '<li data-id="{id}" class="{disabled}"><a role="menuitem" tabindex="-1" href="{href}">{text}</a></li>';
+        strTpl += '<li data-id="{id}" class="v6-bootstrap {disabled}"><a role="menuitem" tabindex="-1" href="{href}">{text}</a></li>';
         break;
       case 'divider':
-        strTpl += '<li data-id="{id}" class="divider {disabled}"></li>';
+        strTpl += '<li data-id="{id}" class="v6-bootstrap divider {disabled}"></li>';
         break;
       case 'header':
-        strTpl += '<li data-id="{id}" class="dropdown-header {disabled}">{text}</li>';
+        strTpl += '<li data-id="{id}" class="v6-bootstrap dropdown-header {disabled}">{text}</li>';
         break;        
     }
 

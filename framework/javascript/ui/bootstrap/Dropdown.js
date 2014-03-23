@@ -52,7 +52,7 @@ v6.ui.bootstrap.Dropdown = function Dropdown() {
   this.render = function() {
     // Generate the HTML Template
     var strTpl = '';
-    strTpl += '<div data-id="{id}" class="dropdown">';
+    strTpl += '<div data-id="{id}" class="v6-bootstrap dropdown">';
     if($this.prop.isButton) {
       // Dropdown Type Button
       strTpl += '   <button class="btn-{style} btn dropdown-toggle" type="button" data-toggle="dropdown">';
