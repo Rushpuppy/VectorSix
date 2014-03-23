@@ -1,6 +1,6 @@
 
 <html>
-  <header>
+  <head>
     <script src="vendor/jquery-1.11.0/jquery-1.11.0.min.js"></script>
   
     <script src="vendor/bootstrap-3.1.1/js/bootstrap.min.js"></script>
@@ -22,7 +22,7 @@
             href: '#'
           },
           position: 'static',
-          inverted: false
+          inverted: true
         },
         {
             id: '2', 
@@ -36,14 +36,44 @@
           id: '3', 
           type: 'v6.ui.bootstrap.NavbarNav',
           parent: 2,
-          children: [],
+          children: [{id:'6'}],
           active: false,
           text: 'Link',          
           href: '#',
           isDropdown: true
-        }        
+        },
+        {
+          id: '4', 
+          type: 'v6.ui.bootstrap.Dropdown',
+          parent: null,
+          children: [{id:'5'}],
+          isButton: true,
+          text: 'DropDown',
+          btnStyle: 'success',
+          isRight: true
+        },
+        {
+          id: '5', 
+          type: 'v6.ui.bootstrap.DropdownElement',
+          parent: 4,
+          text: 'Dropdown Element',
+          href: '#',
+          elementType: 'li', // li, divider, header
+          isDisabled: false,
+          children: []
+        },
+        {
+          id: '6', 
+          type: 'v6.ui.bootstrap.DropdownElement',
+          parent: 3,
+          text: 'Test Element',
+          href: '#',
+          elementType: 'li', // li, divider, header
+          isDisabled: true,
+          children: []
+        }                                
         ];
- 
+        
         // Render Page
         var pageController = new v6.controller.DeveloperPageController()
         pageController.renderUi(arrBootstrap);
@@ -51,11 +81,12 @@
         // Log Save Page
         console.log(pageController.saveUi());
         
-        
       });      
     </script>
-  </header>
+  </head>
   <body>
-    
+
+      
+
   </body>
 </html>

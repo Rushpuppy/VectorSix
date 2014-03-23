@@ -103,9 +103,6 @@ v6.ui.bootstrap.Navbar = function Navbar() {
   */ 
   this.load = function(objProp) {
     $this.prop = objProp;
-    if($this.prop.hasOwnProperty('elements')){
-      delete $this.prop['elements'];
-    } 
   }
   
   /*

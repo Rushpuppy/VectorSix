@@ -1,23 +1,24 @@
 
 /*
-* v6.ui.bootstrap.NavbarContainer Class
-* This Class generates a NavbarContainer Bootstrap Element
-* http://getbootstrap.com/components/#navbar
+* v6.ui.bootstrap.Dropdown Class
+* This Class generates a Dropdown Bootstrap Element
+* http://getbootstrap.com/components/#dropdowns
 * @author Rushpuppy - Severin Holm   
 */   
-v6.ui.bootstrap.NavbarContainer = function NavbarContainer() {
+v6.ui.bootstrap.Dropdown = function Dropdown() {
   //****************************************************************************
   // Properties
   //****************************************************************************
   var $this = this;
     
   this.prop = {
-    id: 'container', 
-    type: 'v6.ui.bootstrap.NavbarContainer',
+    id: 'Dropdown', 
+    type: 'v6.ui.bootstrap.Dropdown',
     parent: null,
-    children: [],    
-    align: 'left', // left, right
-    containerType: 'nav' // nav, form, btn, text
+    isButton: true,
+    btnStyle: 'danger', // success, info, warning, danger, normal
+    text: 'DropDown',
+    children: []
   };
   
   
@@ -38,7 +39,7 @@ v6.ui.bootstrap.NavbarContainer = function NavbarContainer() {
     $this.uiBuilder = new v6.ui.UiBuilder();
     $this.uiBuilder.form = ''; 
     $this.uiBuilder.prop = '';  
-    $this.uiBuilder.allow = ''; // NavbarNav, NavbarForm, NavbarButton, NavbarText Elements
+    $this.uiBuilder.allow = ''; // DropdownElement 
   }
   
   //****************************************************************************
@@ -51,32 +52,26 @@ v6.ui.bootstrap.NavbarContainer = function NavbarContainer() {
   this.render = function() {
     // Generate the HTML Template
     var strTpl = '';
-    strTpl += '<{element} data-id="{id}" data-container="{id}" class="v6-bootstrap nav navbar-{type} navbar-{align}">';
-    strTpl += '</{element}>';
+    strTpl += '<div data-id="{id}" class="dropdown">';
+    if($this.prop.isButton) {
+      // Dropdown Type Button
+      strTpl += '   <button class="btn-{style} btn dropdown-toggle" type="button" data-toggle="dropdown">';
+      strTpl += '      {text} <span class="caret"></span>';
+      strTpl += '   </button>';
+    } else {
+      // Dropdown Type Link
+      strTpl += '   <a href="#" class="dropdown-toggle" data-toggle="dropdown">{text} <b class="caret"></b></a>';
+    }
+    // Dropdown Container    
+    strTpl += '   <ul data-container="{id}" class="dropdown-menu">';
+    strTpl += '   </ul>';
+    strTpl += '</div>'; 
     
     // Set Values into Template
     strTpl = strTpl.replace(/{id}/g, $this.prop.id);
-    strTpl = strTpl.replace(/{type}/g, $this.prop.containerType);
-    strTpl = strTpl.replace(/{align}/g, $this.prop.align);
-    
-    // Set Element Value into Template
-    var strElement = '';
-    switch($this.prop.containerType){
-      case 'nav':
-        strElement = 'ul';
-        break;
-      case 'btn':
-        strElement = 'button';
-        break;
-      case 'text':
-        strElement = 'p';
-        break;     
-      case 'form':
-        strElement = 'form';
-        break;     
-    }    
-    strTpl = strTpl.replace(/{element}/g, strElement);
-    
+    strTpl = strTpl.replace(/{text}/g, $this.prop.text);
+    strTpl = strTpl.replace(/{style}/g, $this.prop.btnStyle);
+       
     // Return Template
     return strTpl;
   } 

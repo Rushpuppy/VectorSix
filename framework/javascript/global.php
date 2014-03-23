@@ -26,6 +26,8 @@ v6.template = {};
   echo file_get_contents('ui/bootstrap/Navbar.js');
   echo file_get_contents('ui/bootstrap/NavbarContainer.js');
   echo file_get_contents('ui/bootstrap/NavbarNav.js');
+  echo file_get_contents('ui/bootstrap/Dropdown.js');
+  echo file_get_contents('ui/bootstrap/DropdownElement.js');
   echo file_get_contents('ui/form/Form.js');
   echo file_get_contents('ui/form/TextBox.js');
   echo file_get_contents('ui/html/Audio.js');

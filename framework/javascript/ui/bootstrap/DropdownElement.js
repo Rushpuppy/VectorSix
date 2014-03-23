@@ -1,23 +1,25 @@
 
 /*
-* v6.ui.bootstrap.NavbarContainer Class
-* This Class generates a NavbarContainer Bootstrap Element
-* http://getbootstrap.com/components/#navbar
+* v6.ui.bootstrap.DropdownElement Class
+* This Class generates a DropdownElement Bootstrap Element
+* http://getbootstrap.com/components/#dropdowns
 * @author Rushpuppy - Severin Holm   
 */   
-v6.ui.bootstrap.NavbarContainer = function NavbarContainer() {
+v6.ui.bootstrap.DropdownElement = function DropdownElement() {
   //****************************************************************************
   // Properties
   //****************************************************************************
   var $this = this;
     
   this.prop = {
-    id: 'container', 
-    type: 'v6.ui.bootstrap.NavbarContainer',
+    id: 'DropdownElement', 
+    type: 'v6.ui.bootstrap.DropdownElement',
     parent: null,
-    children: [],    
-    align: 'left', // left, right
-    containerType: 'nav' // nav, form, btn, text
+    text: 'Dropdown Element',
+    href: '#',
+    elementType: 'li', // li, divider, header
+    isDisabled: false,
+    children: []
   };
   
   
@@ -38,7 +40,7 @@ v6.ui.bootstrap.NavbarContainer = function NavbarContainer() {
     $this.uiBuilder = new v6.ui.UiBuilder();
     $this.uiBuilder.form = ''; 
     $this.uiBuilder.prop = '';  
-    $this.uiBuilder.allow = ''; // NavbarNav, NavbarForm, NavbarButton, NavbarText Elements
+    $this.uiBuilder.allow = ''; // DropdownElement 
   }
   
   //****************************************************************************
@@ -51,32 +53,29 @@ v6.ui.bootstrap.NavbarContainer = function NavbarContainer() {
   this.render = function() {
     // Generate the HTML Template
     var strTpl = '';
-    strTpl += '<{element} data-id="{id}" data-container="{id}" class="v6-bootstrap nav navbar-{type} navbar-{align}">';
-    strTpl += '</{element}>';
     
+    switch($this.prop.elementType) {
+      case 'li':
+        strTpl += '<li data-id="{id}" class="{disabled}"><a role="menuitem" tabindex="-1" href="{href}">{text}</a></li>';
+        break;
+      case 'divider':
+        strTpl += '<li data-id="{id}" class="divider {disabled}"></li>';
+        break;
+      case 'header':
+        strTpl += '<li data-id="{id}" class="dropdown-header {disabled}">{text}</li>';
+        break;        
+    }
+
     // Set Values into Template
     strTpl = strTpl.replace(/{id}/g, $this.prop.id);
-    strTpl = strTpl.replace(/{type}/g, $this.prop.containerType);
-    strTpl = strTpl.replace(/{align}/g, $this.prop.align);
+    strTpl = strTpl.replace(/{text}/g, $this.prop.text);
+    strTpl = strTpl.replace(/{href}/g, $this.prop.href);
     
-    // Set Element Value into Template
-    var strElement = '';
-    switch($this.prop.containerType){
-      case 'nav':
-        strElement = 'ul';
-        break;
-      case 'btn':
-        strElement = 'button';
-        break;
-      case 'text':
-        strElement = 'p';
-        break;     
-      case 'form':
-        strElement = 'form';
-        break;     
-    }    
-    strTpl = strTpl.replace(/{element}/g, strElement);
-    
+    // Set isActive Value into Template
+    if($this.prop.isDisabled) {
+      strTpl = strTpl.replace(/{disabled}/g, 'disabled');
+    }
+       
     // Return Template
     return strTpl;
   } 
