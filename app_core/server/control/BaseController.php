@@ -1,7 +1,7 @@
 
 <?php
 
-public class BaseController {
+abstract class BaseController {
   // Requestdata $_GET, $_POST, $_SESSION etc.
   public function request() {
   }
@@ -11,19 +11,19 @@ public class BaseController {
   }
   
   // Add File CSS, Javascript
-  public function addFile() {
+  abstract function addFile() {
   }   
   
   // Add a View to Template Scope
-  public function addView() {
+  abstract function addView() {
   }
   
   // Add a Model to Model Scope
-  public function addModel() {
+  abstract function addModel() {
   }
   
   // Priviledges Stuff
-  public function priviledges() {
+  function priviledges() {
   }
   
   // Run Controller

@@ -30,7 +30,7 @@
     <script src="../vendor/jquery-1.11.0/jquery-1.11.0.min.js"></script>
     <script src="../vendor/bootstrap-3.1.1/js/bootstrap.min.js"></script>
     <link href="../vendor/bootstrap-3.1.1/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-    <link href="../vendor/bootstrap-3.1.1/cssbootstrap-theme.min.css/" type="text/css" rel="stylesheet" />
+    <link href="../vendor/bootstrap-3.1.1/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" />
     <script src="../framework/javascript/global.php"></script>
     
     <script>
@@ -41,7 +41,7 @@
           id: '1', 
           type: 'v6.ui.bootstrap.Navbar',
           parent: null,
-          children: [{id:'2'},{id:'7'},{id:'8'}],          
+          children: [{id:'2'},{id:'7'},{id:'8'},{id:'9'}],          
           text: 'SEVERIN', 
           href: '#',
           position: 'static',
@@ -50,14 +50,14 @@
         {
           id: '2', 
           type: 'v6.ui.bootstrap.NavbarNav',
-          parent: 1,
+          parent: '1',
           children: [{id:'3'}],     
           align: 'left',
         },        
         {
           id: '3', 
           type: 'v6.ui.bootstrap.NavbarNavElement',
-          parent: 2,
+          parent: '2',
           children: [{id:'6'}],
           active: false,
           text: 'Link',    
@@ -67,7 +67,7 @@
         {
           id: '4', 
           type: 'v6.ui.bootstrap.Dropdown',
-          parent: null,
+          parent: '13',
           children: [{id:'5'}],
           isButton: true,
           text: 'DropDown',
@@ -77,27 +77,27 @@
         {
           id: '5', 
           type: 'v6.ui.bootstrap.DropdownElement',
-          parent: 4,
+          parent: '4',
+          children: [],
           text: 'Dropdown Element',
           href: '#',
           elementType: 'li',
-          isDisabled: false,
-          children: []
+          isDisabled: false
         },
         {
           id: '6', 
           type: 'v6.ui.bootstrap.DropdownElement',
-          parent: 3,
+          parent: '3',
+          children: [],
           text: 'Test Element',
           href: '#',
           elementType: 'li',
-          isDisabled: true,
-          children: []
+          isDisabled: true
         },
         {
           id: '7', 
           type: 'v6.ui.bootstrap.NavbarButton',
-          parent: 1,
+          parent: '1',
           children: [],
           text: 'Title', 
           href: '#',
@@ -107,7 +107,7 @@
         {
           id: '8', 
           type: 'v6.ui.bootstrap.NavbarText',
-          parent: 1,
+          parent: '1',
           children: [],
           text: 'This is a normal Text', 
           align: 'left' // left, right
@@ -115,10 +115,38 @@
         {
           id: '9', 
           type: 'v6.ui.bootstrap.NavbarForm',
-          parent: null,
+          parent: '1',
           children: [],    
           align: 'left', // left, right
-        }                                                        
+        },
+        {
+          id: '10', 
+          type: 'v6.ui.bootstrap.Container',
+          parent: null,
+          children: [{id:'11'}]
+        },
+        {
+          id: '11', 
+          type: 'v6.ui.bootstrap.GridRow',
+          parent: '10',
+          children: [{id:'12'}]
+        },
+        {
+          id: '12', 
+          type: 'v6.ui.bootstrap.GridCol',
+          parent: '11',
+          children: [{id:'13'}],
+          size: 6,
+          offset: 3
+        },
+        {
+          id: '13', 
+          type: 'v6.ui.bootstrap.Panel',
+          parent: '12',
+          children: [{id:'4'}],
+          title: 'Test Panel',
+          style: 'default' // success, info, warning, danger, default
+        }                                                                                        
         ];
         
         // Render Page
