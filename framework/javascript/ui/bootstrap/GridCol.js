@@ -51,7 +51,7 @@ v6.ui.bootstrap.GridCol = function GridCol() {
   this.render = function() {
     // Generate the HTML Template
     var strTpl = '';
-    strTpl += '<div data=id="{id}" data-container="{id}" class="v6-bootstrap col-md-{size} {offset}">';
+    strTpl += '<div data-id="{id}" data-container="{id}" class="v6-bootstrap col col-md-{size} {offset}">';
     strTpl += '</div>';
 
     // Set Values into Template

@@ -31,9 +31,11 @@
     <script src="../vendor/bootstrap-3.1.1/js/bootstrap.min.js"></script>
     <link href="../vendor/bootstrap-3.1.1/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link href="../vendor/bootstrap-3.1.1/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" />
+    <link href="../framework/css/dev_mode.css" type="text/css" rel="stylesheet" />
     <script src="../framework/javascript/global.php"></script>
     
     <script>
+      var pageController = null;
       $(function() {
       
         // Generate The Object that comes from Database
@@ -129,16 +131,32 @@
           id: '11', 
           type: 'v6.ui.bootstrap.GridRow',
           parent: '10',
-          children: [{id:'12'}]
+          children: [{id:'12'},{id:'14'},{id:'15'}]
         },
         {
           id: '12', 
           type: 'v6.ui.bootstrap.GridCol',
           parent: '11',
           children: [{id:'13'}],
-          size: 6,
-          offset: 3
+          size: 4,
+          offset: 0
         },
+        {
+          id: '15', 
+          type: 'v6.ui.bootstrap.GridCol',
+          parent: '11',
+          children: [],
+          size: 4,
+          offset: 0
+        },
+        {
+          id: '14', 
+          type: 'v6.ui.bootstrap.GridCol',
+          parent: '11',
+          children: [],
+          size: 4,
+          offset: 0
+        },        
         {
           id: '13', 
           type: 'v6.ui.bootstrap.Panel',
@@ -150,8 +168,10 @@
         ];
         
         // Render Page
-        var pageController = new v6.controller.DeveloperPageController()
+        pageController = new v6.controller.DeveloperPageController()
         pageController.renderUi(arrBootstrap);
+        
+        // Start DevMode with F9 
         
         // Log Save Page
         console.log(pageController.saveUi());

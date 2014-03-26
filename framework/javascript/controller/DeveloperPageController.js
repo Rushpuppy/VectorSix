@@ -13,6 +13,7 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
   var $this = this;
   
   this.arrElements = new Array();
+  this.isDevMode = false;
   
   //****************************************************************************
   // Constructor 
@@ -24,7 +25,7 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
   */     
   this.init = function() { 
     // Call Event Manager
-    $this.eventManager();  
+    $this.eventManager(); 
   }
   
   //****************************************************************************
@@ -34,38 +35,208 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
   * Register Events to specific Elements
   */  
   this.eventManager = function() {
-    // MouseOver and MouseOut Event for all Bootstrap Elements
-    $('body').on('mouseover', '.v6-bootstrap' , function(){$this.onMouseOverElement(this)});
-    $('body').on('mouseout', '.v6-bootstrap' , function(){$this.onMouseOutElement(this)});
+    // F9 - Dev Menu On and Off Event
+    $('body').off();
+    $('body').on('keypress', function(objEvent){
+      if(objEvent.key == 'F9') {
+        if($this.isDevMode){
+          $this.isDevMode = false;
+          $this.quitDevMode();
+        } else {
+          $this.isDevMode = true;
+          $this.runDevMode();
+        }
+      } 
+     });    
   };
 
   /*
-  * Shows Border Arround the Element
-  * @param {object} objCaller the Event Trigger Element
-  */
-  this.onMouseOverElement = function(objCaller) {
-    // Add Developement css Class
-    //$(objCaller).addClass();
+  * Renders DevMenu
+  */    
+  this.runDevMode = function() {
+    // Add DevMenu Style to editable Bootstrap Elements
+    $('.v6-bootstrap.navbar').addClass('v6-devmode');
+    $('.v6-bootstrap.container').addClass('v6-devmode');
+    $('.v6-bootstrap.row').addClass('v6-devmode');
+    $('.v6-bootstrap.col').addClass('v6-devmode');
+    $('.v6-bootstrap.panel').addClass('v6-devmode');
+
+    /*
+    * DEVMODE For Bootstrap Navbar Element
+    */    
+    $('.v6-devmode.navbar').each(function() {
+      // Add Border to Bootstrap Row
+      $(this).addClass('v6-devborder-navbar');  
+      
+      // Get Element Id
+      var strId = $(this).attr('data-id');
+      var strContent = $(this).html();
+      
+      // Generate DevBar
+      var strTpl = '';
+      strTpl += '<div class="v6-devbar v6-devbar-navbar" data-id="dev-{id}">';
+      strTpl += '   <button type="button" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-cog"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-align-justify"></span></button>';
+      strTpl += '</div>';
+      strTpl += '<div class="v6-devcontainer-L1 v6-devcontainer-navbar">';
+      strTpl += '   {container}';
+      strTpl += '</div>';  
+      
+      // Set ID Value into Template
+      strTpl = strTpl.replace(/{id}/g, strId);
+      strTpl = strTpl.replace(/{container}/g, strContent);
+      
+      // Render Template to v6-devmode
+      $(this).html(strTpl);
+    }); 
+
+    /*
+    * DEVMODE For Bootstrap Container Element
+    */    
+    $('.v6-devmode.container').each(function() {
+      // Add Border to Bootstrap Row
+      $(this).addClass('v6-devborder-container');  
+      
+      // Get Element Id
+      var strId = $(this).attr('data-id');
+      var strContent = $(this).html();
+      
+      // Generate DevBar
+      var strTpl = '';
+      strTpl += '<div class="v6-devbar v6-devbar-container" data-id="dev-{id}">';
+      strTpl += '   <button type="button" class="btn btn-info pull-right btn-sm"><span class="glyphicon glyphicon-cog"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-info pull-right btn-sm"><span class="glyphicon glyphicon-trash"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-info pull-right btn-sm"><span class="glyphicon glyphicon-align-justify"></span></button>';
+      strTpl += '</div>';
+      strTpl += '<div class="v6-devcontainer-L1 v6-devcontainer-container">';
+      strTpl += '   {container}';
+      strTpl += '</div>';  
+      
+      // Set ID Value into Template
+      strTpl = strTpl.replace(/{id}/g, strId);
+      strTpl = strTpl.replace(/{container}/g, strContent);
+      
+      // Render Template to v6-devmode
+      $(this).html(strTpl);
+    }); 
     
-    // Show DevMenu
-    // TODO: Only on the Highest !!
-    var strId = $(objCaller).attr('data-id');
-    $this.renderDevmenu(strId);
-  };
+    /*
+    * DEVMODE For Bootstrap GridRow Element
+    */    
+    $('.v6-devmode.row').each(function() {
+      // Add Border to Bootstrap Row
+      $(this).addClass('v6-devborder-row');  
+      
+      // Get Element Id
+      var strId = $(this).attr('data-id');
+      
+      // Generate DevBar
+      var strTpl = '';
+      strTpl += '<div class="v6-devbar v6-devbar-row" data-id="dev-{id}">';
+      strTpl += '   <button type="button" class="btn btn-warning pull-right btn-sm"><span class="glyphicon glyphicon-cog"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-warning pull-right btn-sm"><span class="glyphicon glyphicon-trash"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-warning pull-right btn-sm"><span class="glyphicon glyphicon-align-justify"></span></button>';
+      strTpl += '</div>';  
+      
+      // Set ID Value into Template
+      strTpl = strTpl.replace(/{id}/g, strId);
+      
+      // Render Template to v6-devmode
+      $(this).prepend(strTpl);
+    }); 
+    
+    /*
+    * DEVMODE For Bootstrap GridCol Element
+    */    
+    $('.v6-devmode.col').each(function() {  
+      // Get Element Id
+      var strId = $(this).attr('data-id');
+      var strContent = $(this).html();
+      
+      // Generate DevBar
+      var strTpl = '';
+      strTpl += '<div class="v6-devborder v6-devborder-col">';
+      strTpl += '   <div class="v6-devbar v6-devbar-col" data-id="dev-{id}">';
+      strTpl += '      <button type="button" class="btn btn-success pull-right btn-sm"><span class="glyphicon glyphicon-cog"></span></button>';
+      strTpl += '      <button type="button" class="btn btn-success pull-right btn-sm"><span class="glyphicon glyphicon-trash"></span></button>';
+      strTpl += '      <button type="button" class="btn btn-success pull-right btn-sm"><span class="glyphicon glyphicon-align-justify"></span></button>';
+      strTpl += '   </div>';
+      strTpl += '   <div class="v6-devcontainer-L2 v6-devcontainer-col">';
+      strTpl += '      {container}';
+      strTpl += '   </div>';
+      strTpl += '</div>';  
+      
+      // Set ID Value into Template
+      strTpl = strTpl.replace(/{id}/g, strId);
+      strTpl = strTpl.replace(/{container}/g, strContent);
+            
+      // Render Template to v6-devmode
+      $(this).html(strTpl);
+    });        
+   
+    /*
+    * DEVMODE For Bootstrap Panel Element
+    */    
+    $('.v6-devmode.panel').each(function() {
+      // Get Element Id
+      var strId = $(this).attr('data-id');
+      var strContent = $(this).html();
+      
+      // Generate DevBar
+      var strTpl = '';
+      strTpl += '<div class="v6-devbar v6-devbar-panel" data-id="dev-{id}">';
+      strTpl += '   <button type="button" class="btn btn-info pull-right btn-sm"><span class="glyphicon glyphicon-cog"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-info pull-right btn-sm"><span class="glyphicon glyphicon-trash"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-info pull-right btn-sm"><span class="glyphicon glyphicon-align-justify"></span></button>';
+      strTpl += '</div>';
+      strTpl += '{container}'; 
+      
+      // Set ID Value into Template
+      strTpl = strTpl.replace(/{id}/g, strId);
+      strTpl = strTpl.replace(/{container}/g, strContent);
+            
+      // Render Template to v6-devmode
+      $(this).html(strTpl);
+    });     
+  }
 
   /*
-  * Hides Border Arround the Element
-  * @param {object} objCaller the Event Trigger Element
-  */  
-  this.onMouseOutElement = function(objCaller) {
-    // Remove Developement css Class
-    //$(objCaller).removeClass();
+  * Quits DevMode
+  */    
+  this.quitDevMode = function() {
+    // Switch Layer2 Content to Layer 1
+    $('.v6-devcontainer-L2').each(function(){
+      $strContent = $(this).html();
+      $objParent = $(this).parent().parent();
+      $objParent.append($strContent);            
+    });
+
+    // Switch Layer1 Content to the Parent Element
+    $('.v6-devcontainer-L1').each(function(){
+      $strContent = $(this).html();
+      $objParent = $(this).parent();
+      $objParent.append($strContent);               
+    });
+        
+    // Delete Border Classes
+    $('.v6-bootstrap.navbar').removeClass('v6-devborder-navbar');
+    $('.v6-bootstrap.container').removeClass('v6-devborder-container');
+    $('.v6-bootstrap.row').removeClass('v6-devborder-row');
     
-    // Hide DevMenu
-    // TODO: Not the Highest !!
-    strId = $(objCaller).attr('data-id');
-    $('[data-id=' +strId + '-devmenu]').remove();
-  };
+    // Delete DevMode Classes
+    $('.v6-bootstrap.navbar').removeClass('v6-devmode');
+    $('.v6-bootstrap.container').removeClass('v6-devmode');
+    $('.v6-bootstrap.row').removeClass('v6-devmode');    
+    $('.v6-bootstrap.col').removeClass('v6-devmode');
+    $('.v6-bootstrap.panel').removeClass('v6-devmode');
+    
+    // Delete Containers
+    $('.v6-devcontainer-L1').remove();
+    $('.v6-devbar').remove();
+    $('.v6-devborder').remove();
+            
+  }
+
 
   /*
   * Renders the UI to the Body Tag
@@ -137,7 +308,10 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
       $('[data-container=' + strParent + ']').append(strHtml);
     } else {
       $('body').append(strHtml);
-    }       
+    } 
+    
+    // Call Init Again 
+    $this.init();      
   };
  
   
@@ -157,42 +331,6 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
     }
     
     return $arrReturn;
-  }
-  
-  /*
-  * Renders Dev Menu
-  * @param {string} strElementId The Id of the Specific Element
-  */    
-  this.renderDevmenu = function(strElementId) {
-    // Generate DevMenu Template
-    // This is a Special thats why inline CSS
-    var strTpl = '';
-    strTpl += '<div data-id="{id}-devmenu" style="position: absolute; z-index: 9999; left: {left}; top: {top};">';
-    strTpl += '   <div class="container">';
-    strTpl += '      <div class="row">';
-    strTpl += '         <div class="col-md-2">';
-    strTpl += '            <div class="panel panel-default">';
-    strTpl += '               <div class="panel-body" style="padding: 7px;">';    
-    strTpl += '                  <button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></button>';
-    strTpl += '                  <button type="button" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-plus"></span></button>';    
-    strTpl += '                  <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-sort"></span></button>';
-    strTpl += '                  <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-cog"></span></button>';    
-    strTpl += '               </div>';
-    strTpl += '            </div>';
-    strTpl += '         </div>';
-    strTpl += '      </div>';
-    strTpl += '   </div>';
-    strTpl += '</div>';
-    
-    // Set Values into Template
-    strTpl = strTpl.replace(/{id}/g, strElementId);
-   
-    // Set Position Left and Top Value into Template    
-    var offset = $('[data-id=' + strElementId + ']').offset();
-    strTpl = strTpl.replace(/{top}/g, offset.top);
-    strTpl = strTpl.replace(/{left}/g, offset.left); 
-    
-    $('body').append(strTpl); 
   }
 
   //****************************************************************************
