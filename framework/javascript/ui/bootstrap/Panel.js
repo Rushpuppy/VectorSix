@@ -79,6 +79,7 @@ v6.ui.bootstrap.Panel = function Panel() {
   */ 
   this.load = function(objProp) {
     $this.prop = objProp;
+    $this.uiBuilder.id = objProp.id;
   }
   
   /*

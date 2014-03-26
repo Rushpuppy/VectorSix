@@ -15,10 +15,11 @@ v6.ui.bootstrap.Dropdown = function Dropdown() {
     id: 'Dropdown', 
     type: 'v6.ui.bootstrap.Dropdown',
     parent: null,
+    children: [],
     isButton: true,
     btnStyle: 'danger', // success, info, warning, danger, normal
     text: 'DropDown',
-    children: []
+    align: 'left'
   };
   
   
@@ -52,7 +53,7 @@ v6.ui.bootstrap.Dropdown = function Dropdown() {
   this.render = function() {
     // Generate the HTML Template
     var strTpl = '';
-    strTpl += '<div data-id="{id}" class="v6-bootstrap dropdown">';
+    strTpl += '<div data-id="{id}" class="v6-bootstrap dropdown btn-dropdown pull-{align}">';
     if($this.prop.isButton) {
       // Dropdown Type Button
       strTpl += '   <button class="btn-{style} btn dropdown-toggle" type="button" data-toggle="dropdown">';
@@ -69,6 +70,7 @@ v6.ui.bootstrap.Dropdown = function Dropdown() {
     
     // Set Values into Template
     strTpl = strTpl.replace(/{id}/g, $this.prop.id);
+    strTpl = strTpl.replace(/{align}/g, $this.prop.align);
     strTpl = strTpl.replace(/{text}/g, $this.prop.text);
     strTpl = strTpl.replace(/{style}/g, $this.prop.btnStyle);
        
@@ -82,6 +84,7 @@ v6.ui.bootstrap.Dropdown = function Dropdown() {
   */ 
   this.load = function(objProp) {
     $this.prop = objProp;
+    $this.uiBuilder.id = objProp.id;
   }
 
   /*

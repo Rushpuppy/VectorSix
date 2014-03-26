@@ -71,6 +71,7 @@ v6.ui.bootstrap.NavbarButton = function NavbarButton() {
   */ 
   this.load = function(objProp) {
     $this.prop = objProp;
+    $this.uiBuilder.id = objProp.id;
   }
   
   /*

@@ -65,6 +65,7 @@ v6.ui.bootstrap.GridRow = function GridRow() {
   */ 
   this.load = function(objProp) {
     $this.prop = objProp;
+    $this.uiBuilder.id = objProp.id;
   }
   
   /*

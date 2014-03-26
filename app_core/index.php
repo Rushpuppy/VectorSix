@@ -35,7 +35,6 @@
     <script src="../framework/javascript/global.php"></script>
     
     <script>
-      var pageController = null;
       $(function() {
       
         // Generate The Object that comes from Database
@@ -74,7 +73,7 @@
           isButton: true,
           text: 'DropDown',
           btnStyle: 'success',
-          isRight: true
+          align: 'left'
         },
         {
           id: '5', 

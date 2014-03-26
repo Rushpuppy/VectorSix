@@ -13,7 +13,7 @@ v6.ui.UiBuilder = function UiBuilder() {
   // Properties
   //****************************************************************************
   var $this = this;
-    
+  this.id = null;  
   this.form = new Array(); // This will be the Formular Generator Prop 
   this.prop = new Array(); // This will be positioning stuff for the Admin Panel
   this.allow = new Array(); // This will be a list with all accepted Types for Adding
@@ -33,18 +33,26 @@ v6.ui.UiBuilder = function UiBuilder() {
   // Methods
   //****************************************************************************  
   /*
+  * EventManager Call from the DevMode Controllbars
+  * @param {string} strEvent The event type (config, remove, order)  
+  */    
+  this.eventManager = function(strEvent) {
+    alert($this.id + ' : ' + strEvent);
+  };
+
+  /*
   * Adds a new Element to childrens
   * @param {string} strId the new child Elements Id
   */    
   this.addElement = function(strId) {
-  }
+  };
   
   /*
   * Removes a element from the childrens
   * @param {string} strId the Id of the specific child Element
   */    
   this.removeElementById = function(strId) {
-  }
+  };
 
   /*
   * Reorders the Childrens by its id
@@ -52,7 +60,7 @@ v6.ui.UiBuilder = function UiBuilder() {
   * @param {string} strIdTo the reorder destination  
   */    
   this.orderElementById = function(strIdFrom, strIdTo) {
-  }
+  };
   
   //****************************************************************************
   // Getter & Setter

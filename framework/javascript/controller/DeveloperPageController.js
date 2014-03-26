@@ -60,6 +60,7 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
     $('.v6-bootstrap.row').addClass('v6-devmode');
     $('.v6-bootstrap.col').addClass('v6-devmode');
     $('.v6-bootstrap.panel').addClass('v6-devmode');
+    $('.v6-bootstrap.btn-dropdown').addClass('v6-devmode');
 
     /*
     * DEVMODE For Bootstrap Navbar Element
@@ -75,8 +76,9 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
       // Generate DevBar
       var strTpl = '';
       strTpl += '<div class="v6-devbar v6-devbar-navbar" data-id="dev-{id}">';
-      strTpl += '   <button type="button" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-cog"></span></button>';
-      strTpl += '   <button type="button" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-align-justify"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-primary pull-right btn-lg v6-dev-btn-save"><span class="glyphicon glyphicon-floppy-save"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-primary pull-right btn-lg v6-dev-btn-conf"><span class="glyphicon glyphicon-cog"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-primary pull-right btn-lg v6-dev-btn-order"><span class="glyphicon glyphicon-align-justify"></span></button>';
       strTpl += '</div>';
       strTpl += '<div class="v6-devcontainer-L1 v6-devcontainer-navbar">';
       strTpl += '   {container}';
@@ -88,6 +90,7 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
       
       // Render Template to v6-devmode
       $(this).html(strTpl);
+      $this.devModeEventManager(strId);
     }); 
 
     /*
@@ -104,9 +107,9 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
       // Generate DevBar
       var strTpl = '';
       strTpl += '<div class="v6-devbar v6-devbar-container" data-id="dev-{id}">';
-      strTpl += '   <button type="button" class="btn btn-info pull-right btn-sm"><span class="glyphicon glyphicon-cog"></span></button>';
-      strTpl += '   <button type="button" class="btn btn-info pull-right btn-sm"><span class="glyphicon glyphicon-trash"></span></button>';
-      strTpl += '   <button type="button" class="btn btn-info pull-right btn-sm"><span class="glyphicon glyphicon-align-justify"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-info pull-right btn-sm v6-dev-btn-conf"><span class="glyphicon glyphicon-cog"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-info pull-right btn-sm v6-dev-btn-remove"><span class="glyphicon glyphicon-trash"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-info pull-right btn-sm v6-dev-btn-order"><span class="glyphicon glyphicon-align-justify"></span></button>';
       strTpl += '</div>';
       strTpl += '<div class="v6-devcontainer-L1 v6-devcontainer-container">';
       strTpl += '   {container}';
@@ -118,6 +121,7 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
       
       // Render Template to v6-devmode
       $(this).html(strTpl);
+      $this.devModeEventManager(strId);
     }); 
     
     /*
@@ -133,9 +137,9 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
       // Generate DevBar
       var strTpl = '';
       strTpl += '<div class="v6-devbar v6-devbar-row" data-id="dev-{id}">';
-      strTpl += '   <button type="button" class="btn btn-warning pull-right btn-sm"><span class="glyphicon glyphicon-cog"></span></button>';
-      strTpl += '   <button type="button" class="btn btn-warning pull-right btn-sm"><span class="glyphicon glyphicon-trash"></span></button>';
-      strTpl += '   <button type="button" class="btn btn-warning pull-right btn-sm"><span class="glyphicon glyphicon-align-justify"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-warning pull-right btn-sm v6-dev-btn-conf"><span class="glyphicon glyphicon-cog"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-warning pull-right btn-sm v6-dev-btn-remove"><span class="glyphicon glyphicon-trash"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-warning pull-right btn-sm v6-dev-btn-order"><span class="glyphicon glyphicon-align-justify"></span></button>';
       strTpl += '</div>';  
       
       // Set ID Value into Template
@@ -143,6 +147,7 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
       
       // Render Template to v6-devmode
       $(this).prepend(strTpl);
+      $this.devModeEventManager(strId);
     }); 
     
     /*
@@ -157,9 +162,9 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
       var strTpl = '';
       strTpl += '<div class="v6-devborder v6-devborder-col">';
       strTpl += '   <div class="v6-devbar v6-devbar-col" data-id="dev-{id}">';
-      strTpl += '      <button type="button" class="btn btn-success pull-right btn-sm"><span class="glyphicon glyphicon-cog"></span></button>';
-      strTpl += '      <button type="button" class="btn btn-success pull-right btn-sm"><span class="glyphicon glyphicon-trash"></span></button>';
-      strTpl += '      <button type="button" class="btn btn-success pull-right btn-sm"><span class="glyphicon glyphicon-align-justify"></span></button>';
+      strTpl += '      <button type="button" class="btn btn-success pull-right btn-sm v6-dev-btn-conf"><span class="glyphicon glyphicon-cog"></span></button>';
+      strTpl += '      <button type="button" class="btn btn-success pull-right btn-sm v6-dev-btn-remove"><span class="glyphicon glyphicon-trash"></span></button>';
+      strTpl += '      <button type="button" class="btn btn-success pull-right btn-sm v6-dev-btn-order"><span class="glyphicon glyphicon-align-justify"></span></button>';
       strTpl += '   </div>';
       strTpl += '   <div class="v6-devcontainer-L2 v6-devcontainer-col">';
       strTpl += '      {container}';
@@ -172,6 +177,7 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
             
       // Render Template to v6-devmode
       $(this).html(strTpl);
+      $this.devModeEventManager(strId);
     });        
    
     /*
@@ -185,9 +191,9 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
       // Generate DevBar
       var strTpl = '';
       strTpl += '<div class="v6-devbar v6-devbar-panel" data-id="dev-{id}">';
-      strTpl += '   <button type="button" class="btn btn-info pull-right btn-sm"><span class="glyphicon glyphicon-cog"></span></button>';
-      strTpl += '   <button type="button" class="btn btn-info pull-right btn-sm"><span class="glyphicon glyphicon-trash"></span></button>';
-      strTpl += '   <button type="button" class="btn btn-info pull-right btn-sm"><span class="glyphicon glyphicon-align-justify"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-default pull-right btn-sm v6-dev-btn-conf"><span class="glyphicon glyphicon-cog"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-default pull-right btn-sm v6-dev-btn-remove"><span class="glyphicon glyphicon-trash"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-default pull-right btn-sm v6-dev-btn-order"><span class="glyphicon glyphicon-align-justify"></span></button>';
       strTpl += '</div>';
       strTpl += '{container}'; 
       
@@ -197,8 +203,49 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
             
       // Render Template to v6-devmode
       $(this).html(strTpl);
-    });     
-  }
+      $this.devModeEventManager(strId);
+    });
+    
+    /*
+    * DEVMODE For Bootstrap DropDown Element
+    */            
+    $('.v6-devmode.btn-dropdown').each(function() {
+      // Get Element Id
+      var strId = $(this).attr('data-id');
+          
+      // Generate DevBar
+      var strTpl = '';
+      strTpl += '<div class="v6-dev-dropdown-container v6-devbar" data-id="dev-{id}">'
+      strTpl += '   <button type="button" class="btn btn-danger btn-xs v6-dev-btn v6-dev-btn-order"><span class="glyphicon glyphicon-align-justify"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-danger btn-xs v6-dev-btn v6-dev-btn-remove"><span class="glyphicon glyphicon-trash"></span></button>';
+      strTpl += '   <button type="button" class="btn btn-danger btn-xs v6-dev-btn v6-dev-btn-conf"><span class="glyphicon glyphicon-cog"></span></button>';      
+      strTpl += '</div>';
+      strTpl = strTpl.replace(/{id}/g, strId);
+      
+      // Render Template to v6-devmode
+      $(this).prepend(strTpl);
+      $this.devModeEventManager(strId);
+    });
+  };
+
+  /*
+  * DevMode EventManager
+  * @param {string} strId the Id of the Element for Eventmanagement  
+  */  
+  this.devModeEventManager = function(strId) {
+    // Find The Correct Element Object
+    for(var i in $this.arrElements) {
+      if($this.arrElements[i].prop.id == strId) {
+        // Get objElement Reference
+        var objElement = $this.arrElements[i];
+        
+        // Add the Button Events
+        $('.v6-devbar[data-id="dev-' + strId + '"]').find('.v6-dev-btn-conf').on('click', function(){objElement.uiBuilder.eventManager('config')});
+        $('.v6-devbar[data-id="dev-' + strId + '"]').find('.v6-dev-btn-remove').on('click', function(){objElement.uiBuilder.eventManager('remove')});
+        $('.v6-devbar[data-id="dev-' + strId + '"]').find('.v6-dev-btn-order').on('click', function(){objElement.uiBuilder.eventManager('order')});
+      }
+    }
+  };
 
   /*
   * Quits DevMode
@@ -233,9 +280,8 @@ v6.controller.DeveloperPageController = function DeveloperPageController() {
     // Delete Containers
     $('.v6-devcontainer-L1').remove();
     $('.v6-devbar').remove();
-    $('.v6-devborder').remove();
-            
-  }
+    $('.v6-devborder').remove();        
+  };
 
 
   /*

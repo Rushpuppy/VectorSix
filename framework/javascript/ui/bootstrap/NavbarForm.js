@@ -67,6 +67,7 @@ v6.ui.bootstrap.NavbarForm = function NavbarForm() {
   */ 
   this.load = function(objProp) {
     $this.prop = objProp;
+    $this.uiBuilder.id = objProp.id;
   }
 
   /*

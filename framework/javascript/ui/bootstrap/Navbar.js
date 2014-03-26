@@ -100,6 +100,7 @@ v6.ui.bootstrap.Navbar = function Navbar() {
   */ 
   this.load = function(objProp) {
     $this.prop = objProp;
+    $this.uiBuilder.id = objProp.id;
   }
   
   /*

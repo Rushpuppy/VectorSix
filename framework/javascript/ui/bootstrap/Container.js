@@ -65,6 +65,7 @@ v6.ui.bootstrap.Container = function Container() {
   */ 
   this.load = function(objProp) {
     $this.prop = objProp;
+    $this.uiBuilder.id = objProp.id;
   }
   
   /*

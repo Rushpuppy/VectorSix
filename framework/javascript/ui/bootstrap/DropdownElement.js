@@ -86,6 +86,7 @@ v6.ui.bootstrap.DropdownElement = function DropdownElement() {
   */ 
   this.load = function(objProp) {
     $this.prop = objProp;
+    $this.uiBuilder.id = objProp.id;
   }
 
   /*

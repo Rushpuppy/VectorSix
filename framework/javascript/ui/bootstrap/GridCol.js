@@ -75,6 +75,7 @@ v6.ui.bootstrap.GridCol = function GridCol() {
   */ 
   this.load = function(objProp) {
     $this.prop = objProp;
+    $this.uiBuilder.id = objProp.id;
   }
   
   /*

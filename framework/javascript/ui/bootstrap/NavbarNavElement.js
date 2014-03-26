@@ -87,6 +87,7 @@ v6.ui.bootstrap.NavbarNavElement = function NavbarNavElement() {
   */ 
   this.load = function(objProp) {
     $this.prop = objProp;
+    $this.uiBuilder.id = objProp.id;
   }
 
   /*

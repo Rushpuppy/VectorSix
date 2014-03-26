@@ -68,6 +68,7 @@ v6.ui.bootstrap.NavbarText = function NavbarText() {
   */ 
   this.load = function(objProp) {
     $this.prop = objProp;
+    $this.uiBuilder.id = objProp.id;
   }
   
   /*

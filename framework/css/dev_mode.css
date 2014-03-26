@@ -15,9 +15,9 @@
   top: 0px;
   left: 0px;
   width: 100%;
-  height: 29px;
+  height: 45px;
   padding: 2px;
-  background-color: #9A2EFE; 
+  background-color: #A9A9F5; 
 }
 
 .v6-devbar-navbar button {
@@ -130,4 +130,15 @@
 .v6-devbar-panel button {
   margin-top: 5px;
   margin-right: 5px;
+}
+
+/*
+* DOPDOWN
+*/
+.v6-dev-dropdown-container {
+  position: absolute;
+}
+
+.v6-dev-dropdown-container .v6-dev-btn {
+
 }
